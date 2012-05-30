@@ -1,0 +1,19 @@
+export(
+bandwidth,
+bandwidth.default,
+ker.eq,
+ker.eq.default,
+loglin.smooth,
+loglin.smooth.default,
+PREp,
+PREp.default,
+SEED,
+SEED.default)
+
+S3method(print, bandwidth)
+S3method(print, ker.eq)
+S3method(summary, ker.eq)
+S3method(print, summary.ker.eq)
+S3method(print, loglin.smooth)
+S3method(print, PREp)
+S3method(print, SEED)

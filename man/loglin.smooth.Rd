@@ -100,7 +100,7 @@ J, K, L, wx, wy, w, ...)}
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
 	New York, NY: Springer-Verlag.}
 
-\author{Jorge Gonzalez B.}
+\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -116,5 +116,5 @@ Table7.4<-cbind(score,rj,sk)
 Table7.4
 }
 
-\keyword{presmoothing}
-\keyword{log-linear}
+\keyword{smoothing}
+

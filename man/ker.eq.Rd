@@ -126,7 +126,7 @@ degreeXA, degreeYA, J, K, L, wx, wy, w)
 	New York, NY: Springer-Verlag.
 }
 
-\author{Jorge Gonzalez B.}
+\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
 
 \seealso{\code{\link{loglin.smooth}}, \code{\link{SEED}}, \code{\link{PREp}}
 }
@@ -160,6 +160,6 @@ Table10.3<-cbind(XtoY,YtoX)
 Table10.3
 }
 
-\keyword{kernel}
-\keyword{SEE}
+\keyword{kernel equating}
+
 

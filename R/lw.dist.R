@@ -1,9 +1,12 @@
-### PREp.R
-### Function to calculate the Percent Relative Error
-### according to the description in Von Davier et al 2004 (p.66)
+### lw.dist.R                   
+### Function to calculate conditional scores distributions using the Lord and
+### Wingersky algorithm
 ###
-### Copyright: Jorge Gonzalez, 2012.
-### Last modification: 25-05-2012.
+### Requires a matrix It of item parameters estimates and the value Theta in
+### to condition on
+###
+### Copyright: Jorge Gonzalez, 2013.
+### Last modification: 02-09-2013.
 ###
 ### This program is free software; you can redistribute it and/or modify
 ### it under the terms of the GNU General Public License as published by
@@ -31,46 +34,29 @@
 ###      Voice: +56-2-3545467  URL  : http://www.mat.puc.cl/~jgonzale
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
-PREp<-function(eq,p)
-UseMethod("PREp")
+### NOTE: The author thanks David Magis for providing a first version of 
+###       this function
 
-PREp.default<-function(eq,p){
-	if(!is(eq, "ker.eq")){
-		stop("eq must be of class 'ker.eq'")}
-	else{
-		if(eq$design!="NEAT_CE"){
-		preYx<-c()
-		preXy<-c()
-
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-		preXy[i]<-100*(sum(eq$eqXy^i*eq$sk)-sum(eq$score^i*eq$rj))/sum(eq$score^i*eq$rj)
-				}
-	res<-list(Moments=1:p,preYx=preYx,preXy=preXy,design=eq$design)
-						}
-		else if(eq$design=="NEAT_CE"){
-		preYx<-c()
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-				 }
-	res<-list(Moments=1:p,preYx=preYx,design=eq$design)
-						}
-	}
-	class(res)<-"PREp"
-res
+lw.dist<-function(It,Theta){
+K<-dim(It)[2]
+prov<-NULL
+a<-It[2,1]
+b<-It[1,1]
+c<-It[3,1]
+prov[1]<-1-Pr(Theta,b,a,c)
+prov[2]<-Pr(Theta,b,a,c)
+res<-prov
+for (i in 2:K){
+prov<-NULL
+a<-It[2,i]
+b<-It[1,i]
+c<-It[3,i]
+Pi<-Pr(Theta,b,a,c)
+Qi<-1-Pi
+prov[1]<-Qi*res[1]
+for (j in 2:i) prov[j]<-Qi*res[j]+Pi*res[j-1]
+prov[i+1]<-Pi*res[i]
+res<-prov
 }
-
-
-
-print.PREp<-function(x,...)
-{
-	cat("\nPercent Relative Error:\n")
-	cat("\n")
-	if(x$design!="NEAT_CE"){
-	print(data.frame(Moments=x$Moments,'X_to_Y'=x$preYx,'Y_to_X'=x$preXy))
-	}
-}	
-
-
-
+return(res)}
 

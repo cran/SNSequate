@@ -1,9 +1,11 @@
-### PREp.R
-### Function to calculate the Percent Relative Error
-### according to the description in Von Davier et al 2004 (p.66)
+### lin.eq.R                   
+### Function that implments the linear method of equating
 ###
-### Copyright: Jorge Gonzalez, 2012.
-### Last modification: 25-05-2012.
+### Requires the vector of observed scores sx and sy and the value on the 
+### scale to be equated
+### 
+### Copyright: Jorge Gonzalez, 2013.
+### Last modification: 02-09-2013.
 ###
 ### This program is free software; you can redistribute it and/or modify
 ### it under the terms of the GNU General Public License as published by
@@ -31,46 +33,33 @@
 ###      Voice: +56-2-3545467  URL  : http://www.mat.puc.cl/~jgonzale
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
-PREp<-function(eq,p)
-UseMethod("PREp")
 
-PREp.default<-function(eq,p){
-	if(!is(eq, "ker.eq")){
-		stop("eq must be of class 'ker.eq'")}
-	else{
-		if(eq$design!="NEAT_CE"){
-		preYx<-c()
-		preXy<-c()
+lin.eq<-function(sx,sy,scale) 
+UseMethod("lin.eq")
 
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-		preXy[i]<-100*(sum(eq$eqXy^i*eq$sk)-sum(eq$score^i*eq$rj))/sum(eq$score^i*eq$rj)
-				}
-	res<-list(Moments=1:p,preYx=preYx,preXy=preXy,design=eq$design)
-						}
-		else if(eq$design=="NEAT_CE"){
-		preYx<-c()
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-				 }
-	res<-list(Moments=1:p,preYx=preYx,design=eq$design)
-						}
-	}
-	class(res)<-"PREp"
-res
+lin.eq.default<-function(sx,sy,scale)
+{
+	###########################
+	#Call parameters
+	###########################
+	cl<-match.call()
+
+	mu.x<-mean(sx)
+	mu.y<-mean(sy)
+	sd.x<-sd(sx)
+	sd.y<-sd(sy)
+	resu<-(sd.y/sd.x)*(scale-mu.x)+mu.y
+	res<-list(call=cl,scale=scale,resu=resu)
+	class(res)<-"lin.eq"
+	return(res)
 }
 
-
-
-print.PREp<-function(x,...)
+print.lin.eq<-function(x,...)
 {
-	cat("\nPercent Relative Error:\n")
+	cat("\nCall:\n")
+	print(x$call)
+	cat("\nEquated values under linear Equating:\n")	
 	cat("\n")
-	if(x$design!="NEAT_CE"){
-	print(data.frame(Moments=x$Moments,'X_to_Y'=x$preYx,'Y_to_X'=x$preXy))
-	}
+	print(data.frame(Score=x$scale,eqYx=x$resu))
+	cat("\n")
 }	
-
-
-
-

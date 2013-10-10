@@ -1,19 +1,39 @@
+import(stats)
+
+import(magic)
+
+
 export(
 bandwidth,
 bandwidth.default,
+eqp.eq,
+eqp.eq.default,
+irt.link,
+irt.link.default,
 ker.eq,
 ker.eq.default,
+le.eq,
+le.eq.default,
+lin.eq,
+lin.eq.default,
 loglin.smooth,
 loglin.smooth.default,
+mea.eq,
+mea.eq.default,
 PREp,
 PREp.default,
 SEED,
 SEED.default)
 
 S3method(print, bandwidth)
+S3method(print, eqp.eq)
+S3method(print, irt.link)
 S3method(print, ker.eq)
 S3method(summary, ker.eq)
 S3method(print, summary.ker.eq)
+S3method(print, le.eq)
+S3method(print, lin.eq)
 S3method(print, loglin.smooth)
+S3method(print, mea.eq)
 S3method(print, PREp)
 S3method(print, SEED)

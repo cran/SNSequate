@@ -102,7 +102,7 @@ J, K, L, wx, wy, w, ...)
 	A. von Davier (Ed.) (2011). \emph{Statistical Models for Equating, Scaling, and Linking. New York: Springer}
 }
 \author{
-Jorge Gonzalez B.
+Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}
 }
 
 
@@ -130,5 +130,4 @@ partialTable10.1
 
 }
 
-\keyword{bandwidth}
-\keyword{kernel}
+\keyword{kernel equating}

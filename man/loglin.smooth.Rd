@@ -93,7 +93,10 @@ J, K, L, wx, wy, w, ...)}
   \item{C}{The C matrix which is so that \eqn{\Sigma=CC^t}{Sigma=CC^t}}}
 
 \references{
-    Holland, P. and Thayer, D. (1987). Notes on the use of loglinear models for fitting 
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+
+        Holland, P. and Thayer, D. (1987). Notes on the use of loglinear models for fitting 
 	discrete probability distributions. Research Report 87-31, Princeton NJ: Educational 
 	Testing Service.
 

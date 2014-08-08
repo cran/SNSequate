@@ -116,6 +116,9 @@ degreeXA, degreeYA, J, K, L, wx, wy, w)
 
 \references{
 
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+
 	Holland, P. and Thayer, D. (1989). The kernel method of equating score distributions. 
 	(Technical Report No 89-84). Princeton, NJ: Educational Testing Service.
 

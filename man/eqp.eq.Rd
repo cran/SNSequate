@@ -34,6 +34,9 @@ eqp.eq(sx, sy, X, Ky = max(sy))
 
 \references{
 
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+
 	Kolen, M., and Brennan, R. (2004). \emph{Test Equating, Scaling and Linking}. 
 	New York, NY: Springer-Verlag.
 }

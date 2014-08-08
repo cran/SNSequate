@@ -29,6 +29,10 @@ when equating from \code{Y} to \code{X}.
 (second column) cases.
 }
 \references{
+
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
 	New York, NY: Springer-Verlag.
 }

@@ -38,8 +38,8 @@ IRT model (for example, using the \code{ltm} R package (Rizopoulos, 2006)).
 
 \references{
 
-	van der Linden, W. (2011). \emph{Test Equating, Scaling and Linking}. 
-	New York, NY: Springer-Verlag.
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
 
 	Lord, F. (1980). \emph{Applications of Item Response Theory to Practical Testing Problems}. 
 	Lawrence Erlbaum Associates, Hillsdale, NJ.
@@ -49,6 +49,10 @@ IRT model (for example, using the \code{ltm} R package (Rizopoulos, 2006)).
 
 	Rizopoulos, D. (2006). ltm: An R package for latent variable modeling and item response theory analyses. 
 	\emph{Journal of Statistical Software, 17(5),} 1--25.
+
+        van der Linden, W. (2011). Local Observed-Score Equating. In A. von Davier (Ed.) 
+	\emph{Statistical Models for Test Equating, Scaling, and Linking}. New York, NY: Springer-Verlag.
+
 }
 
 \author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}

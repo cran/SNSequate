@@ -33,6 +33,10 @@ another one. For instance, when \eqn{h_X}{h_X} and \eqn{h_Y}{h_Y} tends to infin
 \code{SEEXy} for each \code{y} in the second column}
 
 \references{
+
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
 	New York, NY: Springer-Verlag.
 }

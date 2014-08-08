@@ -23,8 +23,8 @@ Equating
 \tabular{ll}{
 Package: \tab SNSequate\cr
 Type: \tab Package\cr
-Version: \tab 1.1-0\cr
-Date: \tab 2013-10-10\cr
+Version: \tab 1.1-1\cr
+Date: \tab 2014-08-08\cr
 License: \tab GPL (>= 2)\cr
 }
 }
@@ -43,6 +43,9 @@ Maintainer: Jorge Gonzalez Burgos <jgonzale@mat.puc.cl>
 
 	Gonzalez, J. (2013). Statistical Models and Inference for the True Equating Transformation in the 
 	Context of Local Equating. \emph{Journal of Educational Measurement, 50(3),} 315-320.
+
+        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
 	
 	Holland, P. and Thayer, D. (1989). The kernel method of equating score distributions. 
 	(Technical Report No 89-84). Princeton, NJ: Educational Testing Service.

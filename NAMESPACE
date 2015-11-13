@@ -1,7 +1,8 @@
 import(stats)
-
 import(magic)
 
+importFrom("graphics", "par")
+importFrom("methods", "is")
 
 export(
 bandwidth,
@@ -23,7 +24,8 @@ mea.eq.default,
 PREp,
 PREp.default,
 SEED,
-SEED.default)
+SEED.default,
+gof)
 
 S3method(print, bandwidth)
 S3method(print, eqp.eq)
@@ -37,3 +39,14 @@ S3method(print, loglin.smooth)
 S3method(print, mea.eq)
 S3method(print, PREp)
 S3method(print, SEED)
+
+S3method(bandwidth, default)
+S3method(eqp.eq, default)
+S3method(irt.link, default)
+S3method(ker.eq, default)
+S3method(le.eq, default)
+S3method(lin.eq, default)
+S3method(loglin.smooth, default)
+S3method(mea.eq, default)
+S3method(PREp, default)
+S3method(SEED, default)

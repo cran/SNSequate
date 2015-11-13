@@ -10,7 +10,7 @@ covariance matrix, according to the specified equating design (see Details).
 }
 
 \usage{loglin.smooth(scores, degree, design, scores2, degreeXA, degreeYA, 
-J, K, L, wx, wy, w, ...)}
+J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA, ...)}
 
 \arguments{
   \item{}{		Note that depending on the specified equating design, not all arguments are necessary 
@@ -43,7 +43,7 @@ J, K, L, wx, wy, w, ...)}
   \item{scores2}{       Only used for the "CB", "NEAT_CE" and "NEAT_PSE" designs. See the description of
 			\code{scores}.}
 
-  \item{degreeXA}{	A vector indicating the	number of power moments to be fitted to the marginal distributions \eqn{X}{X} and \eqn{A}{A},
+  \item{degreeXA}{  A vector indicating the	number of power moments to be fitted to the marginal distributions \eqn{X}{X} and \eqn{A}{A},
 			and the number or cross moments to be fitted to the joint distribution \eqn{(X,A)}{(X,A)}
 			(see details). Only used for the "NEAT_CE" and "NEAT_PSE" designs.}
 
@@ -64,6 +64,36 @@ J, K, L, wx, wy, w, ...)}
 
   \item{w}{		A number that satisfies \eqn{0\leq w\leq 1}{0<=w<=1} indicating the weight given to 
 			population \eqn{P}{P}. Only used for the "NEAT" design.}
+			
+	\item{gapsX}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{J} to smooth "gaps", usually ocurring at regular intervals due to scores rounded to integer values and other methodological factors. }
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted by the log-linear model.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   	\item{gapsY}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{K}.}
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   	\item{gapsA}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{L}. }
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   \item{lumpX}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{X} due to recording of negative rounded formulas or any other methodological artifact.}
+   
+   \item{lumpY}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{Y}.}
+   
+   \item{lumpA}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{A}.}
 
   \item{\dots}{		Further arguments currently not used.}
 }
@@ -101,7 +131,11 @@ J, K, L, wx, wy, w, ...)}
 	Testing Service.
 
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
-	New York, NY: Springer-Verlag.}
+	New York, NY: Springer-Verlag.
+	
+[1]	Moses, T. "Paper SA06_05 Using PROC GENMOD for Loglinear Smoothing Tim Moses and Alina A. von Davier, Educational Testing Service, Princeton, NJ".
+	
+	}
 
 \author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
 
@@ -117,6 +151,18 @@ sk<-loglin.smooth(scores=Math20EG[,2],degree=3,design="EG")$sp.est
 score<-0:20
 Table7.4<-cbind(score,rj,sk)
 Table7.4
+
+## Example taken from [1]
+score <- 0:20
+freq <- c(10, 2, 5, 8, 7, 9, 8, 7, 8, 5, 5, 4, 3, 0, 2, 0, 1, 0, 2, 1, 0)
+ldata <- data.frame(score, freq)
+
+plot(ldata, pch=16, main="Data w Lump at 0")
+m1 = loglin.smooth(scores=ldata$freq,kert="gauss",degree=c(3),design="EG")
+m2 = loglin.smooth(scores=ldata$freq,kert="gauss",degree=c(3),design="EG",lumpX=0)
+Ns = sum(ldata$freq)
+points(m1$sp.est*Ns, col=2, pch=16)
+points(m2$sp.est*Ns, col=3, pch=16) # Preserves the lump
 }
 
 \keyword{smoothing}

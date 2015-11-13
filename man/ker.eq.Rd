@@ -11,7 +11,7 @@ of equating are also provided.
 
 \usage{
 ker.eq(scores, kert, hx = NULL, hy = NULL, degree, design, Kp = 1, scores2, 
-degreeXA, degreeYA, J, K, L, wx, wy, w)
+degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA)
 }
 
 \arguments{  
@@ -84,6 +84,36 @@ degreeXA, degreeYA, J, K, L, wx, wy, w)
 
   \item{w}{		A number that satisfies \eqn{0\leq w\leq 1}{0<=w<=1} indicating the weight given to 
 			population \eqn{P}{P}. Only used for the "NEAT" design.}
+			
+	\item{gapsX}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{J} to smooth "gaps", usually ocurring at regular intervals due to scores rounded to integer values and other methodological factors. }
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted by the log-linear model.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   	\item{gapsY}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{K}.}
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   	\item{gapsA}{ A \emph{list} object containing:
+	                \describe{
+	                  \item{\code{index}}{A vector of indices between \eqn{0} and \eqn{L}. }
+	                  \item{\code{degree}}{An integer indicating the maximum degree of the moments fitted.}
+	                 }
+	                  Only used for the "NEAT" design.
+   }
+   
+   \item{lumpX}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{X} due to recording of negative rounded formulas or any other methodological artifact.}
+   
+   \item{lumpY}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{Y}.}
+   
+   \item{lumpA}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{A}.}
 
   \item{\dots}{		Further arguments currently not used.}
 }

@@ -35,29 +35,30 @@ PREp<-function(eq,p)
 UseMethod("PREp")
 
 PREp.default<-function(eq,p){
-	if(!is(eq, "ker.eq")){
-		stop("eq must be of class 'ker.eq'")}
-	else{
-		if(eq$design!="NEAT_CE"){
-		preYx<-c()
-		preXy<-c()
+  if (!is(eq, "ker.eq")) {
+    stop("eq must be of class 'ker.eq'")
+  }
 
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-		preXy[i]<-100*(sum(eq$eqXy^i*eq$sk)-sum(eq$score^i*eq$rj))/sum(eq$score^i*eq$rj)
-				}
-	res<-list(Moments=1:p,preYx=preYx,preXy=preXy,design=eq$design)
-						}
-		else if(eq$design=="NEAT_CE"){
-		preYx<-c()
-		for(i in 1:p){
-		preYx[i]<-100*(sum(eq$eqYx^i*eq$rj)-sum(eq$score^i*eq$sk))/sum(eq$score^i*eq$sk)
-				 }
-	res<-list(Moments=1:p,preYx=preYx,design=eq$design)
-						}
-	}
-	class(res)<-"PREp"
-res
+  if (eq$design != "NEAT_CE") {
+    preYx <- c()
+    preXy <- c()
+    
+    for (i in 1:p) {
+      preYx[i] <- 100 * (sum(eq$eqYx^i * eq$rj) - sum(eq$score^i * eq$sk)) / sum(eq$score^i * eq$sk)
+      preXy[i] <- 100 * (sum(eq$eqXy^i * eq$sk) - sum(eq$score^i * eq$rj)) / sum(eq$score^i * eq$rj)
+    }
+    res <- list(Moments = 1:p,preYx = preYx,preXy = preXy,design = eq$design)
+  }
+  else {
+    preYx <- c()
+    for (i in 1:p) {
+      preYx[i] <- 100 * (sum(eq$eqYx ^ i * eq$rj) - sum(eq$score^i * eq$sk)) / sum(eq$score^i * eq$sk)
+    }
+    res <- list(Moments = 1:p,preYx = preYx,design = eq$design)
+  }
+  
+  class(res) <- "PREp"
+  res
 }
 
 

@@ -114,48 +114,51 @@ bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degr
 				}
 	Kp<-Kp
 	
+	muy = sum(psv*sp.est)
+	vary = sum(sp.est*(psv - muy)^2)
+	
 	#############################################
 	#Penalties functions according to kernel type
 	#############################################
 
 	Gauss_Y=function(h)
 	{
-	a_y=sqrt(var(y)/(var(y)+h^2))
+	a_y=sqrt(vary/(vary+h^2))
 	f=c()
 	for(i in 1:length(psv))
 	{
-		riy=(psv[i]-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy=(psv[i]-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		f[i]=sum(sp.est*dnorm(riy))/(a_y*h)
 	}
 	PEN1=sum((sp.est-f)^2)
 	A=c()
 	B=c()
 	for(i in 1:length(psv)){
-	
-		riy_A=(psv[i]-0.25-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+
+		riy_A=(psv[i]-0.25-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		if(sum(sp.est*(-riy_A)*dnorm(riy_A))/(a_y*h)^2<0)
 		{A[i]=1}
 		else{A[i]=0}
 	}
 	for(i in 1:length(psv))
 	{
-		riy_B=(psv[i]+0.25-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy_B=(psv[i]+0.25-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		if(sum(sp.est*(-riy_B)*dnorm(riy_B))/(a_y*h)^2>0)
 		{B[i]=0}
 		else{B[i]=1}
 	}
 	PEN2=Kp*sum(A*(1-B))
-
+	
 	return(PEN1+PEN2)
 }
 
 	Logis_Y=function(h)
 	{
-	a_y=sqrt(var(y)/(var(y)+(pi^2/3)*h^2))
+	a_y=sqrt(vary/(vary+(pi^2/3)*h^2))
 	f=c()
 	for(i in 1:length(psv))
 	{
-		riy=(psv[i]-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy=(psv[i]-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		f[i]=sum(sp.est*dlogis(riy))/(a_y*h)
 	}
 	PEN1=sum((sp.est-f)^2)
@@ -163,14 +166,14 @@ bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degr
 	B=c()
 	for(i in 1:length(psv))
 	{
-		riy_A=(psv[i]-0.25-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy_A=(psv[i]-0.25-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		if(sum(sp.est*dlogis(riy_A)*(1-2*plogis(riy_A)))<0)
 		{A[i]=1}
 		else{A[i]=0}
 	}
 	for(i in 1:length(psv))
 	{
-		riy_B=(psv[i]+0.25-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy_B=(psv[i]+0.25-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		if(sum(sp.est*dlogis(riy_B)*(1-2*plogis(riy_B)))>0)
 		{B[i]=0}
 		else{B[i]=1}
@@ -181,16 +184,58 @@ bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degr
 
 	Unif_Y=function(h)
 	{
-	a_y=sqrt(var(y)/(var(y)+(1/12)*h^2))
+	a_y=sqrt(vary/(vary+(1/12)*h^2))
 	f=c()
 	for(i in 1:length(psv))
 	{
-		riy=(psv[i]-a_y*psv-(1-a_y)*mean(y))/(a_y*h)
+		riy=(psv[i]-a_y*psv-(1-a_y)*muy)/(a_y*h)
 		f[i]=sum(sp.est*dunif(riy,-1/2,1/2))/(a_y*h)
 	}
 	PEN1=sum((sp.est-f)^2)
 	return(PEN1)
-}
+	}
+	
+	Epan_Y = function(h)
+	{
+	  a_y = sqrt(vary / (vary + (1 / 5) * h ^ 2))
+	  f = c()
+	  for (i in 1:length(psv))
+	  {
+	    riy = (psv[i] - a_y * psv - (1 - a_y) * muy) / (a_y * h)
+	    f[i] = sum(sp.est * depan(riy)) / (a_y * h)
+	  }
+	  PEN1 = sum((sp.est - f) ^ 2)
+	  A = c()
+	  B = c()
+	  for (i in 1:length(psv))
+	  {
+	    riy_A = ((psv[i] - 0.25 - a_y * psv - (1 - a_y) * muy) / (a_y * h))
+	    riy_A = riy_A * (riy_A >= -1 &
+	                       riy_A <= 1)                  ## indicadora
+	    if (sum(-(3 / 2) * sp.est * (1 / a_y * h) ^ 2 * riy_A) < 0)
+	    {
+	      A[i] = 1
+	    }
+	    else{
+	      A[i] = 0
+	    }
+	  }
+	  for (i in 1:length(psv))
+	  {
+	    riy_B = ((psv[i] + 0.25 - a_y * psv - (1 - a_y) * muy) / (a_y * h))
+	    riy_B = riy_B * (riy_B >= -1 &
+	                       riy_B <= 1)                   ##indicadora
+	    if (sum(-(3 / 2) * sp.est * (1 / a_y * h) ^ 2 * riy_B) > 0)
+	    {
+	      B[i] = 0
+	    }
+	    else{
+	      B[i] = 1
+	    }
+	  }
+	  PEN2 = Kp * sum(A * (1 - B))
+	  return(PEN1 + PEN2)
+	}
 
 	if(kert=="gauss"){
 	  fn=Gauss_Y}
@@ -198,6 +243,10 @@ bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degr
 	  fn=Logis_Y}
 	else if(kert=="unif"){
 	  fn=Unif_Y}
+	else if(kert=="epan"){
+	  fn=Epan_Y}
+	else if(kert=="adap"){
+	  fn=Gauss_Y}
 
 	h<-optim(fn=fn, par=0.65, hessian = TRUE,lower=0,upper=3,method="Brent")$par
 

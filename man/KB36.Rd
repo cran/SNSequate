@@ -18,7 +18,7 @@ matrices (\code{KBformX_par} and \code{KBformY_par}).
 }
 
 \source{The data come with the distribution of the CIPE software which is freely available 
-at \url{http://www.education.uiowa.edu/docs/default-source/casma-computerprograms/}. The list of item 
+at \url{https://education.uiowa.edu/centers/center-advanced-studies-measurement-and-assessment/computer-programs}. The list of item 
 parameters estimates can be found in Table 6.5 of Kolen and Brennan (2004).
 }
 

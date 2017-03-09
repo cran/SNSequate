@@ -38,3 +38,73 @@ P.inv<-function(p.s,S,Kx=max(S)){
   }
   mean(c(x.lo.ps,x.up.ps))
 }
+
+####################################
+##  Reimplemented some methods
+##  so it does not break the working 
+##  dependant functions.
+##  Needs posterior Refactoring
+####################################
+P_x <- function(x, F) {
+  x_s <- floor(x + 0.5)
+  F_x <- function(x){
+            if(x < 0){
+              return(0)
+            } else if(x > length(F)){
+              return(1)
+            }
+
+            return(F[x+1]) # Because index start at 1
+         }
+  
+  t <- 100*(F_x(x_s - 1) + (x_s - (x_s - 0.5)) * (F_x(x_s) - F_x(x_s - 1)))
+  
+  return(max(0, min(100, t)))
+}
+
+
+P_inv_p <- function(p, F){
+  K_x <- length(F) - 1
+  F_x <- function(x){
+            if(x < 0){
+              return(0)
+            } else if(x > length(F)){
+              return(1)
+            }
+            
+            return(F[x+1]) # Because index start at 1
+          }
+  
+  
+  if(p >= 100){ 
+    x_u <- K_x + 0.5 
+  } else { 
+    x_u_s <- length(F) - 1
+    if(length(idx <- which(F*100 > p)))
+      x_u_s <- min(idx) - 1
+    x_u <- (p/100 - F_x(x_u_s - 1)) / (F_x(x_u_s) - F_x(x_u_s - 1)) + (x_u_s - 0.5)
+  }
+  
+  if(p <= 0){ 
+    x_l <- -0.5 
+  } else{
+    x_l_s <- 0
+    if(length(idx <- which(F*100 < p))) 
+      x_l_s <- max(idx) - 1 
+    x_l <- (p/100 - F_x(x_l_s)) / (F_x(x_l_s + 1) - F_x(x_l_s)) + (x_l_s + 0.5)
+  }
+  
+  return(mean(c(x_u, x_l)))
+}
+
+eqp_eq <- function(x, y, F, G){
+  p_x <- sapply(x, P_x, F)
+  return(sapply(p_x, P_inv_p, G))
+}
+  
+  
+  
+
+
+
+

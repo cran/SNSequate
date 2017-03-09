@@ -17,7 +17,7 @@ been described and analized by Kolen and Brennan (2004).
 }
 
 \source{The data come with the distribution of the RAGE-RGEQUATE software which is freely available 
-at \url{http://www.education.uiowa.edu/docs/default-source/casma-computerprograms/}
+at \url{https://education.uiowa.edu/centers/center-advanced-studies-measurement-and-assessment/computer-programs}
 }
 
 \references{

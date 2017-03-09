@@ -5,7 +5,7 @@
 \description{This function contains various measures to assess the model's goodness of fit. }
 
 \usage{
-gof(obs, fit, methods=c("FT"), p.out=TRUE)
+gof(obs, fit, methods=c("FT"), p.out=FALSE)
 }
 
 \arguments{
@@ -35,7 +35,7 @@ gof(obs, fit, methods=c("FT"), p.out=TRUE)
       	[1] \url{https://en.wikipedia.org/wiki/Kullback-Leibler_divergence}
 }
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Daniel Leon A. \email{dnacuna@mat.uc.cl}}
 
 \examples{
 data(Math20EG)

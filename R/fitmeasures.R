@@ -31,42 +31,52 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-gof <- function(obs, fit, methods=c("FT"), p.out=TRUE){
+gof <- function(obs, fit, methods=c("FT"), p.out=FALSE){
   retvals <- list()
-  cat("\n")
   
   if("FT" %in% methods){
-    cat("Freeman-Tukey Residuals:\n")
-    cat("------------------------\n")
     ftres <- ft.res(obs, fit, p.out=p.out)
-    print(ftres)
     retvals <- c(retvals, list(ft.res=ftres))
-    cat("\n")
   }
   
   if("KL" %in% methods){
-    cat("Symmetrised Kullback-Leibler divergence:\n")
-    cat("----------------------------------------\n")
     kl <- kl.divergence(obs, fit) + kl.divergence(fit, obs)
-    print(kl)
     retvals <- c(retvals, list(kl.div=kl))
-    cat("\n")
   }
   
   if("Chisq" %in% methods){
-    cat("Pearson's Chi-squared Test:\n")
-    cat("---------------------------\n")
     chisq <- chisq.test(obs, fit)
     chisq <- list(statistic=chisq$stat, df=chisq$parameter, p.value=chisq$p.value)
-    cat(paste0("X-squared = ",chisq$stat, ", df = ",chisq$df, ", p-value = ",chisq$p.value))
     retvals <- c(retvals, list(chisq=chisq))
+  }
+  
+  retvals$methods <- methods
+  class(retvals) <- "snse.gof"
+  retvals
+}
+
+print.snse.gof <- function(x, ...){
+  if("FT" %in% x$methods){
+    cat("Freeman-Tukey Residuals:\n")
+    cat("------------------------\n")
+    print(x$ft.res)
     cat("\n")
   }
   
-  cat("---------------------------\n\n")
+  if("KL" %in% x$methods){
+    cat("Symmetrised Kullback-Leibler divergence:\n")
+    cat("----------------------------------------\n")
+    print(x$kl.div)
+    cat("\n")
+  }
   
-  return(retvals)
-  
+  if("Chisq" %in% x$methods){
+    cat("Pearson's Chi-squared Test:\n")
+    cat("---------------------------\n")
+    cat("H0: The data is consistent with the specified distribution\n\n")
+    cat(paste0("X-squared = ",x$chisq$stat, ", df = ",x$chisq$df, ", p-value = ",round(x$chisq$p.value, 3)))
+    cat("\n")
+  }
 }
 
 

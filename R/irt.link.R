@@ -11,6 +11,7 @@ if(icc=="cloglog" & model!="1PL") stop("The cloglog is not yet implemented for t
 
 cl<-match.call()
 
+parm <- data.frame(parm)
 colnames(parm) <- c("aJj", "bJj", "cJj", "aIj", "bIj", "cIj")
 parm = parm[common,]
 

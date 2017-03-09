@@ -10,8 +10,10 @@ of equating are also provided.
 }
 
 \usage{
-ker.eq(scores, kert, hx = NULL, hy = NULL, degree, design, Kp = 1, scores2, 
-degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA)
+ker.eq(scores, kert, hx=NULL, hy=NULL, degree, design, Kp=1, scores2, 
+       degreeXA, degreeYA, J, K, L, wx, wy, w, 
+       gapsX=NULL, gapsY=NULL, gapsA=NULL, lumpX=NULL, lumpY=NULL, lumpA=NULL,
+       alpha=NULL, h.adap=NULL)
 }
 
 \arguments{  
@@ -37,8 +39,8 @@ degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA
 			scores on test \eqn{Y}{Y}.}
 
   \item{kert}{		A character string giving the type of kernel to be used for continuization. 
-			Current options include "\code{gauss}", "\code{logis}", and "\code{uniform}" 
-			for the gaussian, logistic and uniform kernels, respectively}
+			Current options include "\code{gauss}", "\code{logis}", "\code{uniform}", "\code{epan}" and "\code{adap}" 
+			for the gaussian, logistic, uniform, Epanechnikov and Adaptative kernels, respectively}
 
 
   \item{hx}{		An integer indicating the value of the bandwidth parameter to be used for kernel continuization 
@@ -114,8 +116,12 @@ degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA
    \item{lumpY}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{Y}.}
    
    \item{lumpA}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{A}.}
+   
+   \item{alpha}{Only for Adaptative Kernel. Sensitivity parameter.}
+   
+   \item{h.adap}{Only for Adaptative Kernel. A list(hx, hy) containing bandwidths for Adaptative kernel for each Form.}
 
-  \item{\dots}{		Further arguments currently not used.}
+  \item{\dots}{Further arguments currently not used.}
 }
 
 \details{This is a generic function that implements the kernel method of test equating as described in Von Davier et al.
@@ -191,6 +197,22 @@ YtoX<-cbind(mod.logis$eqXy,mod.unif$eqXy,mod.gauss$eqXy)
 
 Table10.3<-cbind(XtoY,YtoX)
 Table10.3
+
+## Examples using Adaptive and Epanechnikov kernels
+x_sim = c(1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1)
+prob_sim = x_sim/sum(x_sim)
+set.seed(1)
+sim = rmultinom(1, p = prob_sim, size = 1000)
+
+x_asimD = c(1,7,13,18,22,24,25,24,20,18,16,15,13,9,5,3,2.5,1.5,1.5,1,1)
+probas_asimD = x_asimD/sum(x_asimD)
+set.seed(1)
+asim = rmultinom(1, p = probas_asimD, size = 1000)
+
+scores = cbind(asim,sim)
+
+mod.adap  = ker.eq(scores,degree=c(2,2),design="EG",kert="adap")
+mod.epan  = ker.eq(scores,degree=c(2,2),design="EG",kert="epan")
 }
 
 \keyword{kernel equating}

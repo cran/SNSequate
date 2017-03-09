@@ -32,11 +32,11 @@
 ###
 
 ker.eq<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,
-                 gapsX,gapsY,gapsA,lumpX,lumpY,lumpA) 
+                 gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,alpha=NULL,h.adap=NULL) 
 UseMethod("ker.eq")
 
 ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,
-                         gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL)
+                         gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,alpha=NULL,h.adap=NULL)
 {
 	###########################
 	#Call parameters
@@ -302,8 +302,8 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	#####################################################################
 	if(design=="EG"){
 	  if (is.null(hx) & is.null(hy)) {
-	    h.x <- bandwidth(scores[,1],kert,degree[1],design)$h
-	    h.y <- bandwidth(scores[,2],kert,degree[2],design)$h
+	    h.x <- bandwidth(scores[,1],kert,degree[1],design, Kp=Kp)$h
+	    h.y <- bandwidth(scores[,2],kert,degree[2],design, Kp=Kp)$h
 	  }
 	  else{
 	    h.x <- hx
@@ -313,7 +313,7 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	else if(design=="SG"){
 	  if(is.null(hx) &
 	     is.null(hy)) {
-	    ban <- bandwidth(scores,kert,degree,design)
+	    ban <- bandwidth(scores,kert,degree,design, Kp=Kp)
 	    h.x <- ban$hx
 	    h.y <- ban$hy
 	  }
@@ -397,6 +397,45 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	    a.q <- sqrt(varay / (varay + (1 / 12) * h.aq ^ 2))
 	  }
 	}
+    else if(kert=="adap") {
+		a.x <- sqrt(varx / (varx + h.x^2))
+		a.y <- sqrt(vary / (vary + h.y^2))
+
+		prodx <- numeric(J)
+		prody <- numeric(J)
+	
+		for(i in 1:J){
+			prodx[i] <- (1 / a.x * h.x) * sum(rj * dnorm((xj[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x)))
+			prody[i] <- (1 / a.y * h.y) * sum(sk * dnorm((yk[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y)))
+		}
+    
+		if(is.null(alpha))
+		  alpha <- 0.5
+		
+		lambdaxi <- ((prod(prodx))^(1/J) / prodx)^(alpha)
+		lambdayi <- ((prod(prody))^(1/K) / prody)^(alpha)
+
+		## Se "aplastan" los valores anteriores
+    
+		if(is.null(h.adap)){
+		  hx.a <- h.x
+		  hy.a <- h.y
+		}
+		else{
+		  hx.a <- ifelse(exists('hx', h.adap), h.adap$hx, h.x)
+		  hy.a <- ifelse(exists('hy', h.adap), h.adap$hy, h.y)
+		}
+		
+		h.x <- lambdaxi * hx.a
+		h.y <- lambdayi * hy.a
+	
+		a.x <- sqrt(varx / (varx + h.x^2))
+		a.y <- sqrt(vary / (vary + h.y^2))
+	}
+	else if(kert=="epan"){
+		a.x <- sqrt(varx / (varx + (1/5) * h.x^2))
+		a.y <- sqrt(vary / (vary + (1/5) * h.y^2))
+	}
 
 	##########################################################
 	# Cummulative distribution functions (kernel type)
@@ -412,6 +451,12 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	  else if (kert == "unif") {
 	    aux <- punif((x - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x), -1/2, 1/2)
 	  }
+	  else if(kert=="epan"){
+      	aux <- pepan((x - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))
+      }
+	  else if(kert=="adap"){
+		aux <- pnorm((x - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))
+      }
 	  
 	  aux2 <- rj * aux
 	  
@@ -443,6 +488,12 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	  else if (kert == "unif") {
 	    aux <- punif((y - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y), -1/2, 1/2)
 	  }
+	  else if(kert=="epan"){
+        aux <- pepan((y - a.y * yk -(1 - a.y) * muy.hat) / (a.y * h.y))
+      }
+	  else if(kert=="adap"){
+		aux <- pnorm((y - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y))
+      }
 	  
 	  aux2 <- sk * aux
 	  
@@ -888,6 +939,122 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	  
 	}
 
+######################
+## Adaptative Kernel
+######################
+
+	else if(kert=="adap"){
+		g <- function(t){
+			den <- c()
+			for(i in 1:length(t)){
+				cc <- sum((sk * dnorm((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y))) / (a.y * h.y))
+				den[i] <- cc
+			}
+			return(den)
+		}
+
+		dGds <- function(t){
+		 	d <- matrix(0, nrow=length(t), ncol=length(yk))
+		 	for(i in 1:length(t)){
+	   			d[i,] <- pnorm((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y)) - (((t[i] - muy.hat) * (1 - a.y^2) * ((yk - muy.hat) / sqrt(vary))^2) / 2 + (1 - a.y) * yk) * (sum(sk * dnorm((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y))) / (a.y * h.y)) 
+	 		}
+	   		return(d)
+		}
+
+		f <- function(t){
+	   		den <- c()
+	   		for(i in 1:length(t)){
+		 		cc <- sum((rj * dnorm((t[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))) / (a.x * h.x))
+		   		den[i] <- cc
+			}
+			return(den)
+		}
+
+		dFdr <- function(t){
+			d <- matrix(0, nrow=length(t), ncol=length(xj))
+		 	for(i in 1:length(t)){
+	   			d[i,] <- pnorm((t[i] - a.x * xj -(1 - a.x) * mux.hat) / (a.x * h.x)) - (((t[i] - mux.hat) * (1 - a.x^2) * ((xj - mux.hat) / sqrt(varx))^2) / 2 + (1 - a.x) * xj) * (sum(rj * dnorm((t[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))) / (a.x * h.x))
+			 }
+	  	 	return(d)
+		}
+		
+		if(design=="NEAT_CE"){
+			hp <- function(t){
+			 	den <- c()
+	   	       	for(i in 1:length(t)){
+			 		cc <- sum((tp * dnorm((t[i] - a.p * al - (1 - a.p) * muax.hat) / (a.p * h.ap))) / (a.p * h.ap))
+			       	den[i] <- cc
+				}
+				return(den)
+			}
+			
+			hq <- function(t){
+				den <- c()
+	   	       	for(i in 1:length(t)){
+			 		cc <- sum((tq * dnorm((t[i] - a.q * al - (1 - a.q) * muay.hat) / (a.q * h.aq))) / (a.q * h.aq))
+		           	den[i] <- cc
+				}
+				return(den)
+			}
+
+			dHpdtp <- function(t){
+				d <- matrix(0, nrow=length(t), ncol=length(al))
+			 	for(i in 1:length(t)){
+		   	 		d[i,] <- pnorm((t[i] - a.p * al - (1 - a.p) * muax.hat) / (a.p * h.ap)) - (((t[i] - muax.hat) * (1 - a.p^2)*((al - muax.hat) / sqrt(varax))^2) / 2 + (1 - a.p) * al) * (sum(tp * dnorm((t[i] - a.p * al - (1 - a.p) * muax.hat) / (a.p * h.ap))) / (a.p * h.ap)) 
+		 		}
+		   	 	return(d)
+			}
+
+			dHqdtq <- function(t){
+				d <- matrix(0,nrow=length(t),ncol=length(al))
+			 	for(i in 1:length(t)){
+		   	 		d[i,] <- pnorm((t[i] - a.q * al - (1 - a.q) * muay.hat) / (a.q * h.aq)) - (((t[i] - muay.hat) * (1 - a.q^2) * ((al - muay.hat) / sqrt(varay))^2) / 2 + (1 - a.q) * al) * (sum(tq * dnorm((t[i] - a.q * al - (1 - a.q) * muay.hat) / (a.q * h.aq))) / (a.q * h.aq)) 
+		 		}
+		   	 	return(d)
+			}
+
+		}
+	}
+
+	#######################
+	# Epanechnikov kernel
+	#######################
+
+	else if(kert=="epan"){
+		g <- function(t){
+			den <- c()
+			for(i in 1:length(t)){
+			  cc <- sum((sk * depan((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y))) / (a.y * h.y))
+				den[i] <- cc
+			}
+			return(den)
+		}
+
+		dGds <- function(t){
+			d <- matrix(0,nrow=length(t),ncol=length(yk))
+			for(i in 1:length(t)){
+			  d[i,] <- pepan((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y)) - (((t[i] - muy.hat) * (1 - a.y ^ 2) * ((yk - muy.hat) / sqrt(vary)) ^ 2) / 2 + (1 - a.y) * yk) * (sum(sk * depan((t[i] - a.y * yk - (1 - a.y) * muy.hat) / (a.y * h.y))) / (a.y * h.y))
+			}
+			return(d)
+		}
+
+		f <- function(t){
+			den <- c()
+			for(i in 1:length(t)){
+			  cc <- sum((rj * depan((t[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))) / (a.x * h.x))
+				den[i] <- cc
+			}
+			return(den)
+		}
+
+		dFdr <- function(t){
+			d <- matrix(0,nrow=length(t),ncol=length(xj))
+			for(i in 1:length(t)){
+			  d[i,] <- pepan((t[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x)) - (((t[i] - mux.hat) * (1 - a.x ^ 2) * ((xj - mux.hat) / sqrt(varx)) ^ 2) / 2 + (1 - a.x) * xj) * (sum(rj * depan((t[i] - a.x * xj - (1 - a.x) * mux.hat) / (a.x * h.x))) / (a.x * h.x))
+			}
+			return(d)
+		}
+	}	
 
 	#########################
 	#   Forming SEE vector
@@ -1101,6 +1268,9 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
               	maxax=maxax,maxay=maxay)
 		}
     
+  res$de_f <- f
+  res$de_g <- g
+  
   class(res) <- "ker.eq"
   
   return(res)
@@ -1282,6 +1452,12 @@ print.summary.ker.eq <- function(x,...) {
   }
   else if (x$kert == "unif") {
     print("Uniform")
+  }
+  else if (x$kert == "adap") {
+    print("Adaptative")
+  }
+  else if (x$kert == "epan") {
+    print("Epanechnikov")
   }
   cat("\nEquated values and SEE under the",x$design,"design\n")
   if (x$design == "EG" | x$design == "SG") {

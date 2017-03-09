@@ -305,18 +305,18 @@ loglin.smooth.default<-function(scores,degree,design,scores2,degreeXA,degreeYA,J
   	C<-adiag(Cp,Cq)
 	}
 	else if(design=="EG" | design=="SG"){
-	D=diag(sqrt(arg))
-	B=model$x[,-1]
-	QR=(D-(sqrt(arg)%*%t(arg)))%*%B
-	Q=qr.Q(qr(QR))
-	C=(D%*%Q)/sqrt(Ns)
-		}
+  	D=diag(sqrt(arg))
+  	B=model$x[,-1]
+  	QR=(D-(sqrt(arg)%*%t(arg)))%*%B
+  	Q=qr.Q(qr(QR))
+  	C=(D%*%Q)/sqrt(Ns)
+	}
 	res<-list(call=cl,sp.est=sp.est,C=C,psv=psv,design=design)
 	if(design=="NEAT_CE" | design=="NEAT_PSE"){
 	  res<-list(call=cl,sp.est=sp.est,C=C,D=D,psv=psv,design=design,Cp=Cp,Cq=Cq)
 	}
 	class(res)<-"loglin.smooth"
-return(res)
+  return(res)
 }
 
 
@@ -326,55 +326,78 @@ print.loglin.smooth<-function(x,...)
 	cat("\nCall:\n")
 	print(x$call)
 	if(x$design=="EG"){
-	cat("\nEstimated score probabilities:\n")
-	cat("\n")
-	print(data.frame(Score=x$psv,Est.Score.Prob.=x$sp.est))
+  	cat("\nEstimated score probabilities:\n")
+  	cat("\n")
+  	print(data.frame(Score=x$psv,Est.Score.Prob.=x$sp.est))
+  	# cat("\nC:\n")
+  	# cat("\n")
+  	# print(x$C)
 	}
 	else if(x$design=="SG"){
-	cat("\nEstimated score probabilities:\n")
-	cat("\n")
-	print(data.frame(Score=x$psv[,1],r=x$sp.est[,1],
-		s=x$sp.est[,2]))}
+  	cat("\nEstimated score probabilities:\n")
+  	cat("\n")
+  	print(data.frame(Score=x$psv[,1],r=x$sp.est[,1],
+  		s=x$sp.est[,2]))
+  	# cat("\nC:\n")
+  	# cat("\n")
+  	# print(x$C)
+	}
 	else if(x$design=="CB"){
-	cat("\nScore X:\n")
-	print(x$psv$psv.x)
-	cat("\nScore Y:\n")
-	print(x$psv$psv.y)
-	cat("\nr_wx\n")
-	print(c(x$sp.est$rj))
-	cat("\ns_wy\n")
-	print(c(x$sp.est$sk))
-	cat("\n")
+  	cat("\nScore X:\n")
+  	print(x$psv$psv.x)
+  	cat("\nScore Y:\n")
+  	print(x$psv$psv.y)
+  	cat("\nr_wx\n")
+  	print(c(x$sp.est$rj))
+  	cat("\ns_wy\n")
+  	print(c(x$sp.est$sk))
+  	cat("\n")
 	}
 	else if(x$design=="NEAT_CE"){
-	cat("\nScore X:\n")
-	print(x$psv$psv.x)
-	cat("\nScore Y:\n")
-	print(x$psv$psv.y)
-	cat("\nScore A:\n")
-	print(x$psv$psv.a)
-	cat("\nr_p\n")
-	print(x$sp.est$rp)
-	cat("\ns_q\n")
-	print(x$sp.est$sq)
-	cat("\nt_p\n")
-	print(x$sp.est$tp)
-	cat("\nt_q\n")
-	print(x$sp.est$tq)
-	cat("\n")
+  	cat("\nScore X:\n")
+  	print(x$psv$psv.x)
+  	cat("\nScore Y:\n")
+  	print(x$psv$psv.y)
+  	cat("\nScore A:\n")
+  	print(x$psv$psv.a)
+  	cat("\nr_p\n")
+  	print(x$sp.est$rp)
+  	cat("\ns_q\n")
+  	print(x$sp.est$sq)
+  	cat("\nt_p\n")
+  	print(x$sp.est$tp)
+  	cat("\nt_q\n")
+  	print(x$sp.est$tq)
+  	# cat("\nC:\n")
+  	# print(x$C)
+  	# cat("\nD:\n")
+  	# print(x$D)
+  	cat("\n")
 	}
 	else if(x$design=="NEAT_PSE"){
-	cat("\nScore X:\n")
-	print(x$psv$psv.x)
-	cat("\nScore Y:\n")
-	print(x$psv$psv.y)
-	cat("\nScore A:\n")
-	print(x$psv$psv.a)
-	cat("\nr_w\n")
-	print(x$sp.est$rw)
-	cat("\ns_w\n")
-	print(x$sp.est$sw)
-	cat("\n")
+	  cat("\nScore X:\n")
+	  print(x$psv$psv.x)
+	  cat("\nScore Y:\n")
+	  print(x$psv$psv.y)
+	  cat("\nScore A:\n")
+	  print(x$psv$psv.a)
+	  cat("\nr_p\n")
+	  print(x$sp.est$rp)
+	  cat("\ns_q\n")
+	  print(x$sp.est$sq)
+	  cat("\nr_w\n")
+	  print(x$sp.est$rw)
+	  cat("\ns_w\n")
+	  print(x$sp.est$sw)
+	  cat("\nt_p\n")
+	  print(x$sp.est$tp)
+	  cat("\nt_q\n")
+	  print(x$sp.est$tq)
+	  # cat("\nC_p:\n")
+	  # print(x$Cp)
+	  # cat("\nC_q:\n")
+	  # print(x$Cq)
+	  cat("\n")
 	}
 }
 

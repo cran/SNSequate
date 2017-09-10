@@ -2,7 +2,6 @@
 
 import(stats)
 import(magic)
-import(DPpackage)
 import(plyr)
 import(progress)
 import(emdbook)

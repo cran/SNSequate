@@ -3,6 +3,9 @@
 \name{BNP.eq.predict}
 \alias{BNP.eq.predict}
 \title{Prediction step for Bayesian non-parametric model for test equating}
+\description{
+This function implements the prediction step in the Bayesian non-parametric model for test equating
+}
 \usage{
 BNP.eq.predict(model, from = NULL, into = NULL, alpha = 0.05)
 }
@@ -15,10 +18,10 @@ The covariates involved are integrated out.}
 \item{into}{Numeric. A vector of indices indicating into which patterns equating should be performed.
 The covariates involved are integrated out.}
 
-\item{alpha}{Numeric. Significance for credible bands.}
+\item{alpha}{Numeric. Level of significance for credible bands.}
 }
 \value{
-A 'BNP.eq.predict' object, which is list containing the following items:
+A 'BNP.eq.predict' object, which is a list containing the following items:
 
 pdf A list of PDF's.
 
@@ -28,28 +31,19 @@ equ Numeric. Equated values.
 
 grid Numeric. Grid used to evaluate pdf's and cdf's.
 }
-\description{
-The
-}
+
 \details{
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Vivamus finibus vitae eros quis dictum. Donec lacus risus, facilisis quis 
-tincidunt et, tincidunt sed mi. Nullam ullamcorper eros est, sed 
-fringilla metus volutpat eu. Etiam ornare nulla id lorem posuere, eu vehicula 
-urna vestibulum. Quisque luctus, diam ac mattis faucibus, leo felis tincidunt urna, eu 
-tempus massa neque nec nibh. Aliquam erat volutpat. Fusce tempor mattis enim quis pretium. 
-Aliquam volutpat luctus felis, nec fringilla enim tincidunt sed. 
-Nam nec leo quis erat lobortis vulputate ac at neque
+Predictions of the score probability distributions are obtained under the Bayesian nonparametric 
+model and are used to compute the equating function.   
 }
 \author{
-Daniel Leon A. \email{dnacuna@mat.uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
+Daniel Leon \email{dnacuna@uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
 }
 \references{
-asdasd
+Gonzalez, J., Barrientos, A., and Quintana, F. (2015). Bayesian Nonparametric Estimation of Test Equating Functions with Covariates. \emph{Computational Statistics and Data Analysis, 89,} 222-244.
 }
-\keyword{BNP}
-\keyword{Bayesian}
-\keyword{equating}
-\keyword{equating,}
-\keyword{non-parametrics,}
+\keyword{nonparametric}
+\concept{Bayesian}
+\concept{equating}
+
 

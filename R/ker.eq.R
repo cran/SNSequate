@@ -32,7 +32,7 @@
 ###
 
 ker.eq<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,
-                 gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,alpha=NULL,h.adap=NULL) 
+                 gapsX,gapsY,gapsA,lumpX,lumpY,lumpA,alpha,h.adap) 
 UseMethod("ker.eq")
 
 ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,

@@ -200,8 +200,8 @@ irt.eq.ose <- function(n_items, param_x, param_y, D=1.7, theta_points, weights, 
   # If theta or weights are not defined, calculate
   # them via Gaussian Quadrature
   if(is.null(theta_points) || is.null(weights)){
-    requireNamespace("statmod")
-    gq <- statmod::gauss.quad.prob(n_points, dist="normal")
+  #  require(statmod)
+    gq <- gauss.quad.prob(n_points, dist="normal")
     theta_points <- gq$nodes
     weights <- gq$weights
   }
@@ -313,11 +313,11 @@ print.irt.eq <- function(x,digits=3,...) {
     df <- data.frame(Scores=0:x$n_items, f_hat=x$f_hat, g_hat=x$g_hat, eYx=x$e_Y_x)
   }
   
-  if(suppressMessages(suppressWarnings(requireNamespace("knitr")))){
+#  if(suppressMessages(suppressWarnings(require(knitr)))){
     print(kable(round(df, digits=digits), padding=2, format="pandoc"), row.names=F)
-  }
-  else{
-    print(round(df, digits=digits), row.names=F)
-  }
+#  }
+#  else{
+#    print(round(df, digits=digits), row.names=F)
+#  }
 }	
 

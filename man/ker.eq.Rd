@@ -10,10 +10,9 @@ of equating are also provided.
 }
 
 \usage{
-ker.eq(scores, kert, hx=NULL, hy=NULL, degree, design, Kp=1, scores2, 
-       degreeXA, degreeYA, J, K, L, wx, wy, w, 
-       gapsX=NULL, gapsY=NULL, gapsA=NULL, lumpX=NULL, lumpY=NULL, lumpA=NULL,
-       alpha=NULL, h.adap=NULL)
+ker.eq(scores, kert, hx = NULL, hy = NULL, degree, design, Kp = 1, scores2, 
+degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, 
+lumpA, alpha, h.adap)
 }
 
 \arguments{  
@@ -165,7 +164,7 @@ ker.eq(scores, kert, hx=NULL, hy=NULL, degree, design, Kp=1, scores2,
 	New York, NY: Springer-Verlag.
 }
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}}
 
 \seealso{\code{\link{loglin.smooth}}, \code{\link{SEED}}, \code{\link{PREp}}
 }
@@ -215,6 +214,6 @@ mod.adap  = ker.eq(scores,degree=c(2,2),design="EG",kert="adap")
 mod.epan  = ker.eq(scores,degree=c(2,2),design="EG",kert="epan")
 }
 
-\keyword{kernel equating}
+\concept{kernel equating}
 
 

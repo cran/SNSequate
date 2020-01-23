@@ -8,14 +8,15 @@ Equating
 
 \description{The package contains functions to perform various models and 
 	methods for test equating. It currently implements the traditional 
-	mean, linear and equipercentile equating methods, as well as the 
-	mean-mean, mean-sigma, Haebara and Stocking-Lord IRT linking methods. 
+	mean, linear and equipercentile equating methods. Both IRT observed-score 
+	and true-score equating are also supported, as well as the mean-mean, 
+	mean-sigma, Haebara and Stocking-Lord IRT linking methods. 
 	It also supports newest methods such that local equating, kernel 
-	equating (using Gaussian, logistic and uniform kernels), and IRT 
-	parameterlinking methods based on asymmetric item characteristic 
-	functions. Functions to obtain both standard error of equating (SEE) 
-	and standard error of equating difference between two equating 
-	functions (SEED) are also implmented for the kernel method of 
+	equating (using Gaussian, logistic, Epanechnikov, uniform and adaptive 
+	kernels) with presmoothing, and IRT parameter linking methods based on 
+	asymmetric item characteristic functions. Functions to obtain both 
+	standard error of equating (SEE) and standard error of equating differences 
+	between two equating functions (SEED) are also implemented for the kernel method of 
 	equating.
 }
 
@@ -23,15 +24,15 @@ Equating
 \tabular{ll}{
 Package: \tab SNSequate\cr
 Type: \tab Package\cr
-Version: \tab 1.1-1\cr
-Date: \tab 2014-08-08\cr
+Version: \tab 1.3.2\cr
+Date: \tab 2020-01-22\cr
 License: \tab GPL (>= 2)\cr
 }
 }
 
-\author{Jorge Gonzalez Burgos
+\author{Jorge Gonzalez
 
-Maintainer: Jorge Gonzalez Burgos <jgonzale@mat.puc.cl>
+Maintainer: Jorge Gonzalez <jorge.gonzalez@mat.uc.cl>
 
 }
 
@@ -44,8 +45,10 @@ Maintainer: Jorge Gonzalez Burgos <jgonzale@mat.puc.cl>
 	Gonzalez, J. (2013). Statistical Models and Inference for the True Equating Transformation in the 
 	Context of Local Equating. \emph{Journal of Educational Measurement, 50(3),} 315-320.
 
-        Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
-        Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+  Gonzalez, J. (2014). SNSequate: Standard and Nonstandard Statistical Models and Methods for Test 
+  Equating. \emph{Journal of Statistical Software, 59(7),} 1-30.
+  
+  Gonzalez, J. and Wiberg, M. (2017). Applying test equating methods using R. Springer.
 	
 	Holland, P. and Thayer, D. (1989). The kernel method of equating score distributions. 
 	(Technical Report No 89-84). Princeton, NJ: Educational Testing Service.

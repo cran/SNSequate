@@ -61,38 +61,9 @@ rowBlockSum <- function(mat,blocksize,w=NULL){
   }
   
   ret <- Reduce('+', lapply(0:(jumps-1), 
-                              function(i){ 
-                                w[i+1]*mat[(1:(blocksize)+i*(blocksize)), ] 
-                              } 
+                              function(i){ w[i+1]*mat[(1:(blocksize)+i*(blocksize)), ] } 
                             ))
   
   return(ret)
 }
 
-#' Transform a table from String to Data Frame.
-#'
-#' The usual way to compare results is using tables from books. This method
-#' accept as input a pasted String, usually copied from a LaTeX table, and
-#' create a Data Frame. Assumes the input is separated evenly by a character,
-#' default is an empty space.
-#' 
-#' @param string Input string
-#' @param n_cols Number of columns in the table
-#' @param sep Separator character
-#' @param header Have a header?
-#' @return data.frame
-#' @export
-pasted_table_to_df <- function(string, n_cols, sep=" ", header=TRUE){
-  raw_data <- strsplit(string, " ")[[1]]
-  raw_data <- gsub("???", "-", raw_data)
-  if(header){
-    df <- data.frame(matrix(as.numeric(raw_data[-c(1:n_cols)]), 
-                            ncol=n_cols, byrow=T))
-    colnames(df) <- raw_data[1:n_cols]
-  }
-  else{
-    df <- data.frame(matrix(as.numeric(raw_data), ncol=n_cols, byrow=T))
-  }
-  
-  return(df)
-}

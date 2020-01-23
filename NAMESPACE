@@ -1,18 +1,13 @@
-#useDynLib(SNSequate, .registration=TRUE, .fixes = "F_")
-
+import(emdbook)
 import(stats)
 import(magic)
 import(plyr)
-import(progress)
-import(emdbook)
 import(knitr)
-
+import(progress)
+import(statmod)
 
 importFrom("graphics", "par")
 importFrom("methods", "is")
-importFrom("grDevices", "rgb")
-importFrom("graphics", "axis", "hist", "layout", 
-           "lines", "plot", "polygon", "segments")
 
 export(
 bandwidth,
@@ -38,9 +33,7 @@ SEED.default,
 gof,
 irt.eq,
 irt.eq.default,
-pasted_table_to_df,
 sim_unimodal,
-contaminate_sample,
 BNP.eq,
 BNP.eq.predict)
 
@@ -58,8 +51,6 @@ S3method(print, PREp)
 S3method(print, SEED)
 S3method(print, irt.eq)
 S3method(print, snse.gof)
-S3method(plot, BNP.eq.predict)
-S3method(print, BNP.eq.predict)
 
 S3method(bandwidth, default)
 S3method(eqp.eq, default)

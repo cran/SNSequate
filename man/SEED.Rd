@@ -40,7 +40,7 @@ another one. For instance, when \eqn{h_X}{h_X} and \eqn{h_Y}{h_Y} tends to infin
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
 	New York, NY: Springer-Verlag.
 }
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}
 }
 
 \seealso{\code{\link{ker.eq}}
@@ -82,5 +82,5 @@ points(0:20,2*seed2,pch=0)
 points(0:20,-2*seed2,pch=0)
 
 }
-\keyword{kernel equating}
+\concept{kernel equating}
 

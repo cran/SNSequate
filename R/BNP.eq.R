@@ -1,6 +1,3 @@
-error_string <- "\nBayesian non-parametric (BNP) methods currently not available on CRAN. To download the latest version go to https://github.com/jagonzalb/SNSequate or run the following command: \n
-devtools::install_github('jagonzalb/SNSequate')\n\n"
-
 #' @name BNP.eq.predict
 #' 
 #' @title Prediction step for Bayesian non-parametric model for test equating
@@ -32,20 +29,17 @@ devtools::install_github('jagonzalb/SNSequate')\n\n"
 #' 
 #' @references asdasd
 #' 
-#' @author Daniel Leon A. \email{dnacuna@mat.uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
+#' @author Daniel Leon \email{dnacuna@uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
 #' 
 #' @keywords BNP equating, Bayesian non-parametrics, equating
 BNP.eq.predict <- function(model, from=NULL, into=NULL, alpha=0.05){
-  stop(error_string)
+  if(class(model) != "BNP.eq")
+    stop("Fitted object must be BNP.eq.")
+  res<-print('The BNP.eq.predict() function is currently not available in SNSequate')
+  return(res)
 }
 
-print.BNP.eq.predict <- function(x, ...) {
 
-}
-
-plot.BNP.eq.predict <- function(x, which="Equating", what=NULL, add=FALSE, ...){
-
-}
 
 #' @name BNP.eq
 #' 
@@ -79,7 +73,9 @@ plot.BNP.eq.predict <- function(x, which="Equating", what=NULL, add=FALSE, ...){
 #' @param covariates Data.frame.  A data frame with factors, containing covariates 
 #'        for test X and Y, stacked in that order.
 #' @param prior List.  Prior information for BNP model. 
+#'        For more information see \code{\link{DPpackage}}.  
 #' @param mcmc List.  MCMC information for BNP model. 
+#'        For more information see \code{\link{DPpackage}}.
 #' @param normalize Logical.  Whether normalize or not the 
 #'        response variable. This is due to Berstein's polynomials. Default is TRUE.
 #'
@@ -104,11 +100,72 @@ plot.BNP.eq.predict <- function(x, which="Equating", what=NULL, add=FALSE, ...){
 #' 
 #' @references asdasd
 #' 
-#' @author Daniel Leon A. \email{dnacuna@mat.uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
+#' @author Daniel Leon \email{dnacuna@uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
 #' 
 #' @keywords BNP equating, Bayesian non-parametrics, equating
 BNP.eq <- function(scores_x, scores_y, range_scores=NULL, design="EG", covariates=NULL, 
                    prior=NULL, mcmc=NULL, normalize=TRUE){
 
- stop(error_string)
-}
+  ## Response
+  Y <- c(scores_x, scores_y)
+
+  if(is.null(range_scores)){
+    max_score=max(Y)
+  } else{
+    max_score=range_scores[2]
+  }
+  ## Bernstein poly assume response on [0, 1]
+  if(normalize)
+    Y <- Y / max_score
+
+  ## Covariates.
+  form_cov <- factor( c( rep("X", length(scores_x)),
+                         rep("Y", length(scores_y))) )
+  X <- model.matrix(~ ., data=cbind(Form=form_cov, covariates))
+
+  ## Count patterns in the design matrix. Basically it
+  ## extract each unique pattern from the discrete covariates
+  Grid <- count(X)
+  patterns <- Grid[, 1:(ncol(Grid)-1)]
+  patterns_freq <- as.numeric(Grid$freq)
+  patterns_freq <- patterns_freq/sum(patterns_freq)
+
+#  # Fitting single-atoms LDBPP model
+#  # mcmc parameters
+#  if(is.null(mcmc))
+#    mcmc <-  list(nburn = 5000, nskip = 20, ndisplay = 10, nsave = 1000)
+
+  ## Default params, not needed for our purposes
+  # Predictions will be made later
+#  grid <- 0.5
+#  npred <- 1
+#  xpred <-  patterns[1, ]  ## Just to get results. Prediction isn't made by DPpackge
+
+  # List of prior information for DPpackage
+#  if(is.null(prior))
+#    prior <- list(maxn = 25, a1=1, a2=1,
+#                  lambda = 25, nu = 6,
+#                  psiinv = diag(1000, ncol(patterns)),
+#                  m0 = rep(0, ncol(patterns)),
+#                  S0 = diag(1000, ncol(patterns)))
+
+  # State
+#  state <- NULL
+
+  # fitting the model
+#  cat("Calling 'DPpackage' to sample model: \n\n")
+#  fit <- tLDBPPdensity(formula=Y~X[, -1],xpred=xpred,  # We take out the intercept because DPpackage adds it
+#                       prior=prior,
+#                       mcmc=mcmc,
+#                       state=state,status=TRUE,
+#                       grid=grid,
+#                       compute.band=FALSE,type.band="PD")
+
+#  ret <- list(scores_x=scores_x, scores_y=scores_y,
+#              Y=Y, X=X,fit=fit, max_score=max_score,
+#              patterns=patterns, patterns_freq=patterns_freq)
+#  class(ret) <- "BNP.eq"
+
+  ret<-print('The BNP.eq() is currently not available in SNSequate')
+    ret
+    }

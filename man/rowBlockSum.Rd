@@ -3,9 +3,13 @@
 \name{rowBlockSum}
 \alias{rowBlockSum}
 \title{Take a matrix and sum blocks of rows}
+
+\description{ This function implements a method to sum blocks of rows in a matrix}
+
 \usage{
 rowBlockSum(mat, blocksize, w = NULL)
 }
+
 \arguments{
 \item{mat}{Input matrix}
 
@@ -13,12 +17,17 @@ rowBlockSum(mat, blocksize, w = NULL)
 
 \item{w}{(Optional) Vector for weighted sum}
 }
-\value{
-Matrix
-}
-\description{
+
+\details{
 The original data set contains very long column headers. This function
 does a keyword search over the headers to find those column headers that
 match a particular keyword, e.g., mean, median, etc.
 }
+
+\value{
+A matrix.
+}
+
+\author{Daniel Acuna Leon. \email{dnacuna@uc.cl}}
+
 

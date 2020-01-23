@@ -17,7 +17,7 @@ gof(obs, fit, methods=c("FT"), p.out=FALSE)
     \describe{
       \item{"FT"}{Freeman-Tukey Residuals. This is the default test.}
       \item{"Chisq"}{Pearson's Chi-squared test.}
-      \item{"KL"}{Symmetrised Kullback-Leibler divergence [1].}
+      \item{"KL"}{Symmetrised Kullback-Leibler divergence.}
     }
   }
   
@@ -32,10 +32,11 @@ gof(obs, fit, methods=c("FT"), p.out=FALSE)
       	Kolen, M., and Brennan, R. (2004). \emph{Test Equating, Scaling and Linking}. 
       	New York, NY: Springer-Verlag.
       	
-      	[1] \url{https://en.wikipedia.org/wiki/Kullback-Leibler_divergence}
+      	Johnson, D. H., and Sinanovic, S. (2000). Symmetrizing the Kullback-Leibler distance (Technical 
+      	report). \emph{IEEE Transactions on Information Theory}.
 }
 
-\author{Daniel Leon A. \email{dnacuna@mat.uc.cl}}
+\author{Daniel Leon Acuna. \email{dnacuna@uc.cl}}
 
 \examples{
 data(Math20EG)
@@ -45,4 +46,4 @@ gof(Math20EG[,1], mod$rj*mod$nx, method=c("FT", "KL"))
 
 }
 
-\keyword{Traditional equating methods}
+\concept{Traditional equating methods}

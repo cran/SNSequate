@@ -68,7 +68,7 @@ link can be fitted in R using the \code{lmer()} function in package \code{lme4}
 	Catolica de Chile
 }
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}}
 
 \seealso{\code{\link{mea.eq}}, \code{\link{lin.eq}}, \code{\link{ker.eq}}
 }
@@ -110,5 +110,5 @@ irt.link(parm2,comitems,model="1PL",icc="logistic",D=1.7)
 irt.link(parm3,comitems,model="1PL",icc="cloglog",D=1.7)
 }
 
-\keyword{IRT parameter linking}
+\concept{IRT parameter linking}
 

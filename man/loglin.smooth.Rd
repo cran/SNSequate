@@ -137,7 +137,7 @@ J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA, ...)}
 	
 	}
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}}
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -165,5 +165,5 @@ points(m1$sp.est*Ns, col=2, pch=16)
 points(m2$sp.est*Ns, col=3, pch=16) # Preserves the lump
 }
 
-\keyword{smoothing}
+\concept{smoothing}
 

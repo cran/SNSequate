@@ -36,7 +36,7 @@ mea.eq(sx, sy, scale)
 	New York, NY: Springer-Verlag.
 }
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}}
 
 \seealso{\code{\link{lin.eq}}, \code{\link{eqp.eq}}, \code{\link{ker.eq}}, \code{\link{le.eq}}
 }
@@ -56,4 +56,4 @@ mea.eq(x1,y1,72)
 mea.eq(x1,y1,0:100)
 }
 
-\keyword{Traditional equating methods}
+\concept{Traditional equating methods}

@@ -7,9 +7,8 @@
 \description{ Implements methods to perform Test Equating over IRT models. }
 
 \usage{
-irt.eq(n_items, param_x, param_y, theta_points=NULL, weights=NULL,
-       n_points=10, w=1, A=NULL, B=NULL, link=NULL, 
-       method_link=NULL, common=NULL, method="TS", D=1.7,...)
+irt.eq(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, w=1, 
+      A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7,...)
 }
 
 \arguments{  
@@ -39,11 +38,11 @@ irt.eq(n_items, param_x, param_y, theta_points=NULL, weights=NULL,
   
   \item{common}{ Common items to estimate A and B. Default asume all items are common.  }
   
-  \item{w}{ Weight factor between real and synthetic population. }
+  \item{w}{ Weight of the synthetic population.  }
   
-  \item{D}{ Scaling parameter. Default is 1.7 }
+  \item{D}{ Sclaing constant}
   
-  \item{...}{ Further arguments.  }
+  \item{...}{Further arguments}
   
 }
 
@@ -53,7 +52,7 @@ This function implements two methods to perform Test Equating over Item Response
 
 "True Score Equating" relate number-correct scores on Form X and Form Y. Assumes that the true score associated with each \eqn{\theta} is equivalent to the true score on another form associated with that \eqn{\theta}.
 
-"Observed Score Equating" uses the IRT model to produce an estimated distribution of observed number-correct scores on each form. Using the compound binomial distribution (Lord and Wingersky 1984) to find the conditional distributions \eqn{f(x|\theta)}, and then integrate out the \eqn{\theta} parameter. Afterwards, an Equipercentile Equating process is done over the estimated distributions. 
+"Observed Score Equating" uses the IRT model to produce an estimated distribution of observed number-correct scores on each form. Using the compound binomial distribution (Lord and Wingersky 1984) to find the conditional distributions \eqn{f(x\mid\theta)}, and then integrate out the \eqn{\theta} parameter. Afterwards, an Equipercentile Equating process is done over the estimated distributions. 
 
 }
 
@@ -71,10 +70,10 @@ An object of the clas \code{irt.eq} is returned. Depending on the method used, t
 }
 
 \references{
-    Kolen, M. J., & Brennan, R. L. (2013). \emph{Test Equating, Scaling, and Linking: Methods and Practices, Third Edition}. Springer Science & Business Media.
+    Kolen, M. J., and Brennan, R. L. (2014). \emph{Test Equating, Scaling, and Linking: Methods and Practices, Third Edition}. Springer Science & Business Media.
 }
 
-\author{Daniel Leon A. \email{dnacuna@mat.uc.cl}}
+\author{Daniel Acuna Leon. \email{dnacuna@uc.cl}}
 
 \seealso{ 
   \code{\link{irt.link}} 
@@ -94,8 +93,7 @@ weights=c(0.000101,0.00276,0.03021,0.142,0.3149,0.3158,
 
 
 irt.eq(36, param_x, param_y, method="TS", A=1, B=0)
-irt.eq(36, param_x, param_y, theta_points, weights, method="OS",
-       A=1, B=0)
+irt.eq(36, param_x, param_y, theta_points, weights, method="OS", A=1, B=0)
 }
 
-\keyword{kernel equating}
+\concept{kernel equating}

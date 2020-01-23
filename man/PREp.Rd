@@ -36,7 +36,7 @@ when equating from \code{Y} to \code{X}.
 	Von Davier, A., Holland, P., and Thayer, D. (2004). \emph{The Kernel Method of Test Equating}. 
 	New York, NY: Springer-Verlag.
 }
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}
 }
 
 \seealso{\code{\link{ker.eq}}
@@ -50,5 +50,5 @@ mod.gauss<-ker.eq(scores=Math20EG,kert="gauss", hx = NULL, hy = NULL,degree=c(2,
 PREp(mod.gauss,10)
 
 }
-\keyword{kernel equating}
+\concept{kernel equating}
 

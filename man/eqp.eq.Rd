@@ -41,7 +41,7 @@ eqp.eq(sx, sy, X, Ky = max(sy))
 	New York, NY: Springer-Verlag.
 }
 
-\author{Jorge Gonzalez B. <jgonzale@mat.puc.cl>}
+\author{Jorge Gonzalez  <jorge.gonzalez@mat.uc.cl>}
 
 \seealso{\code{\link{mea.eq}}, \code{\link{lin.eq}}, \code{\link{ker.eq}}
 }
@@ -60,5 +60,5 @@ eqp.eq(sx,sy,0:4)
 
 }
 
-\keyword{Traditional equating methods}
+\concept{Traditional equating methods}
 

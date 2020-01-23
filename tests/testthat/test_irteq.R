@@ -17,7 +17,6 @@ test_that("IRT equating", {
   
   
   irt.eq(36, param_x, param_y, method="TS", A=1, B=0)
-  irt.eq(36, param_x, param_y, theta_points, weights, method="OS",
-         A=1, B=0)
+  irt.eq(36, param_x, param_y, theta_points, weights, method="OS", A=1, B=0)
   expect_true(TRUE)
 })

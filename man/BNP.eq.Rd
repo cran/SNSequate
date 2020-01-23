@@ -19,9 +19,11 @@ BNP.eq(scores_x, scores_y, range_scores = NULL, design = "EG",
 \item{covariates}{Data.frame.  A data frame with factors, containing covariates 
 for test X and Y, stacked in that order.}
 
-\item{prior}{List.  Prior information for BNP model.}
+\item{prior}{List.  Prior information for BNP model. 
+For more information see DPpackage.}
 
-\item{mcmc}{List.  MCMC information for BNP model.}
+\item{mcmc}{List.  MCMC information for BNP model. 
+For more information see DPpackage.}
 
 \item{normalize}{Logical.  Whether normalize or not the 
 response variable. This is due to Berstein's polynomials. Default is TRUE.}
@@ -42,18 +44,9 @@ patterns A matrix describing the different patterns formed
 
 patterns_freq The normalized frequency of each pattern.
 }
-\description{
-The Bayesian nonparametric (BNP) approach (Ghoshand Ramamoorthi, 2003; Hjort et al., 2010) 
-starts by focusing on spaces of distribution functions, so that uncertainty is expressed on F itself. 
-The prior distribution p(F) is defined on the space F of all distribution functions defined on X . If X 
-is an infinite set then F is infinite-dimensional, and the corresponding prior model 
-p(F) on F is termed nonparametric. The prior probability model is also referred to
-as a random probability measure (RPM), and it essentially corresponds to a distribution 
-on the space of all distributions on the set X . Thus Bayesian nonparametric models 
-are probability models defined on a function space (Muller and Quintana, 2004).
-
-Gonzalez et al. (2015) proposed a Bayesian non-parametric approach for equating. The main
-idea consists of introducing covariate dependent BNP models for a collection of 
+\description{This function implements the Bayesian nonparametric approach for test equating 
+as described in Gonzalez, Barrientos and Quintana (2015) <\doi{https://doi.org/10.1016/j.csda.2015.03.012}>. 
+The main idea consists of introducing covariate dependent Bayesian nonparametric models for a collection of 
 covariate-dependent equating transformations
 
  \eqn{ \left\{ \boldsymbol{\varphi}_{\boldsymbol{z}_f, \boldsymbol{z}_t} (\cdot): 
@@ -62,24 +55,23 @@ covariate-dependent equating transformations
   }
 }
 \details{
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Vivamus finibus vitae eros quis dictum. Donec lacus risus, facilisis quis 
-tincidunt et, tincidunt sed mi. Nullam ullamcorper eros est, sed 
-fringilla metus volutpat eu. Etiam ornare nulla id lorem posuere, eu vehicula 
-urna vestibulum. Quisque luctus, diam ac mattis faucibus, leo felis tincidunt urna, eu 
-tempus massa neque nec nibh. Aliquam erat volutpat. Fusce tempor mattis enim quis pretium. 
-Aliquam volutpat luctus felis, nec fringilla enim tincidunt sed. 
-Nam nec leo quis erat lobortis vulputate ac at neque
+The Bayesian nonparametric (BNP) approach starts by focusing on spaces of distribution 
+functions, so that uncertainty is expressed on F itself. The prior distribution p(F) is 
+defined on the space F of all distribution functions defined on X . If X is an infinite 
+set then F is infinite-dimensional, and the corresponding prior model p(F) on F is termed 
+nonparametric. The prior probability model is also referred to as a random probability 
+measure (RPM), and it essentially corresponds to a distribution on the space of all 
+distributions on the set X . Thus Bayesian nonparametric models are probability models 
+defined on a function space.
 }
 \author{
-Daniel Leon A. \email{dnacuna@mat.uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
+Daniel Leon \email{dnacuna@uc.cl}, Felipe Barrientos \email{afb26@stat.duke.edu}.
 }
 \references{
-asdasd
+Gonzalez, J., Barrientos, A., and Quintana, F. (2015). Bayesian Nonparametric Estimation of Test Equating Functions with Covariates. \emph{Computational Statistics and Data Analysis, 89,} 222-244. 
 }
-\keyword{BNP}
-\keyword{Bayesian}
-\keyword{equating}
-\keyword{equating,}
-\keyword{non-parametrics,}
+\keyword{nonparametric}
+\concept{Bayesian}
+\concept{equating}
+
 

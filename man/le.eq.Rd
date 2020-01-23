@@ -55,7 +55,7 @@ IRT model (for example, using the \code{ltm} R package (Rizopoulos, 2006)).
 
 }
 
-\author{Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}}
+\author{Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}}
 
 \seealso{\code{\link{mea.eq}}, \code{\link{eqp.eq}}, \code{\link{lin.eq}} \code{\link{ker.eq}}
 }
@@ -80,4 +80,4 @@ le.eq(c(2,2),itx,ity,c(1,2))
 
 }
 
-\keyword{local equating}
+\concept{local equating}

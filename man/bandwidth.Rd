@@ -106,7 +106,7 @@ J, K, L, wx, wy, w, ...)
 	A. von Davier (Ed.) (2011). \emph{Statistical Models for Equating, Scaling, and Linking. New York: Springer}
 }
 \author{
-Jorge Gonzalez B. \email{jgonzale@mat.puc.cl}
+Jorge Gonzalez \email{jorge.gonzalez@mat.uc.cl}
 }
 
 
@@ -134,4 +134,4 @@ partialTable10.1
 
 }
 
-\keyword{kernel equating}
+\concept{kernel equating}

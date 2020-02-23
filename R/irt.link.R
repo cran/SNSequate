@@ -2,11 +2,11 @@
 ### mean-sigma, haebara and SL. It additionally implements H and SL using
 ### an asymetric cloglog ICC
 
-irt.link<-function(parm,common,model,icc,D,...)
+irt.link<-function(parm,common,model,icc,D)
 UseMethod("irt.link")
 
 
-irt.link.default<-function(parm,common,model,icc,D,...){
+irt.link.default<-function(parm,common,model,icc,D){
 if(icc=="cloglog" & model!="1PL") stop("The cloglog is not yet implemented for this model")
 
 cl<-match.call()

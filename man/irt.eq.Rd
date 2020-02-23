@@ -8,7 +8,7 @@
 
 \usage{
 irt.eq(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, w=1, 
-      A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7,...)
+      A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7)
 }
 
 \arguments{  
@@ -41,8 +41,6 @@ irt.eq(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, 
   \item{w}{ Weight of the synthetic population.  }
   
   \item{D}{ Sclaing constant}
-  
-  \item{...}{Further arguments}
   
 }
 

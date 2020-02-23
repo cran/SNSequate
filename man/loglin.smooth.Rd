@@ -10,7 +10,7 @@ covariance matrix, according to the specified equating design (see Details).
 }
 
 \usage{loglin.smooth(scores, degree, design, scores2, degreeXA, degreeYA, 
-J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA, ...)}
+J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA,...)}
 
 \arguments{
   \item{}{		Note that depending on the specified equating design, not all arguments are necessary 
@@ -94,8 +94,9 @@ J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA, ...)}
    \item{lumpY}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{Y}.}
    
    \item{lumpA}{An integer to represent the index where an artificial "lump" is created in the marginal distribution of frecuencies for \eqn{A}.}
+   
+   \item{\dots}{Further arguments to be passed.}
 
-  \item{\dots}{		Further arguments currently not used.}
 }
 
 \details{This function fits loglinear models as described in Holland and Thayer (1987), and Von Davier 

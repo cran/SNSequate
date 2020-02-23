@@ -7,7 +7,7 @@
 Von Davier et al. (2004). 
 }
 \usage{
-SEED(eq1, eq2, ...)
+SEED(eq1, eq2)
 }
 
 \arguments{
@@ -17,7 +17,6 @@ SEED(eq1, eq2, ...)
 \item{eq2}{	An object of class \code{ker.eq} which contains one of the two estimated equated functions to be used 
 		for the SEED.}
 
-\item{\dots}{	Further arguments currently not in use}
 }
 
 \details{The SEED can be used as a measure to choose whether to support or not a certain equating function on another 

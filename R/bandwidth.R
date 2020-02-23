@@ -32,10 +32,10 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-bandwidth<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,...) 
+bandwidth<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w) 
 UseMethod("bandwidth")
 
-bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,...)
+bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w)
 {
 
 	###########################

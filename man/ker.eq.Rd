@@ -119,8 +119,6 @@ lumpA, alpha, h.adap)
    \item{alpha}{Only for Adaptative Kernel. Sensitivity parameter.}
    
    \item{h.adap}{Only for Adaptative Kernel. A list(hx, hy) containing bandwidths for Adaptative kernel for each Form.}
-
-  \item{\dots}{Further arguments currently not used.}
 }
 
 \details{This is a generic function that implements the kernel method of test equating as described in Von Davier et al.

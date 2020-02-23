@@ -1,9 +1,9 @@
 irt.eq <- function(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, w=1, 
-                   A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL, method="TS", D=1.7,...)
+                   A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL, method="TS", D=1.7)
 UseMethod("irt.eq")
 
 irt.eq.default <- function(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, w=1, 
-                           A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7,...){
+                           A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7){
   if(method == "TS"){
     return(irt.eq.tse(n_items, param_x, param_y, D,
                       A, B, link, method_link, common))

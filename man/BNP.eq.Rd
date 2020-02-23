@@ -75,3 +75,4 @@ Gonzalez, J., Barrientos, A., and Quintana, F. (2015). Bayesian Nonparametric Es
 \concept{equating}
 
 
+

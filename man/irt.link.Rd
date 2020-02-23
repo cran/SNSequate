@@ -9,7 +9,7 @@ mean-sigma, Haebara, and Stocking and Lord methods are available (see details).
 
 }
 \usage{
-irt.link(parm, common, model, icc, D, ...)
+irt.link(parm, common, model, icc, D)
 }
 
 \arguments{
@@ -27,8 +27,6 @@ irt.link(parm, common, model, icc, D, ...)
 
   \item{D}{		A number indicating the value of the constant \code{D} 
 			(see details)}
-
-  \item{\dots}{		Further arguments currently not used.}
 
 }
 

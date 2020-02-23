@@ -32,10 +32,10 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-SEED<-function(eq1,eq2,...)
+SEED<-function(eq1,eq2)
 UseMethod("SEED")
 
-SEED.default<-function(eq1,eq2,...)
+SEED.default<-function(eq1,eq2)
 {
 	if(!is(eq1, "ker.eq") || !is(eq2, "ker.eq")){
 		stop("eq1 and eq2 must be of class 'ker.eq'")}

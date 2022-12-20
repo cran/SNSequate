@@ -33,10 +33,11 @@
 #' 
 #' @keywords BNP equating, Bayesian non-parametrics, equating
 BNP.eq.predict <- function(model, from=NULL, into=NULL, alpha=0.05){
-  if(class(model) != "BNP.eq")
-    stop("Fitted object must be BNP.eq.")
-  res<-print('The BNP.eq.predict() function is currently not available in SNSequate')
-  return(res)
+  if(is(model,"BNP.eq")){
+    res<-print('The BNP.eq.predict() function is currently not available in SNSequate')
+  }else{
+    stop("Fitted object must be BNP.eq.") 
+  }
 }
 
 

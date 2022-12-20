@@ -8,12 +8,12 @@ citEntry(entry = "Article",
   volume       = "59",
   number       = "7",
   pages        = "1--30",
-  url          = "http://www.jstatsoft.org/v59/i07/",
-
+  url          = "https://www.jstatsoft.org/v59/i07/",
+  doi          = "10.18637/jss.v059.i07",
   textVersion  =
   paste("Jorge Gonzalez (2014).",
         "SNSequate: Standard and Nonstandard Statistical Models and Methods for Test Equating.",
         "Journal of Statistical Software, 59(7), 1-30.",
-        "URL http://www.jstatsoft.org/v59/i07/.")
+        "URL https://www.jstatsoft.org/v59/i07/.")
 )
 

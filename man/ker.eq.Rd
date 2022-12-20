@@ -16,7 +16,7 @@ lumpA, alpha, h.adap)
 }
 
 \arguments{  
-  \item{}{		Note that depending on the specified equating design, not all arguments are necessary 
+  {		Note that depending on the specified equating design, not all arguments are necessary 
 			as detailed below.} 
 
 

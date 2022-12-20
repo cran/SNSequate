@@ -13,7 +13,7 @@ covariance matrix, according to the specified equating design (see Details).
 J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, lumpA,...)}
 
 \arguments{
-  \item{}{		Note that depending on the specified equating design, not all arguments are necessary 
+  {		Note that depending on the specified equating design, not all arguments are necessary 
 			as detailed below.} 
 
 

@@ -79,9 +79,9 @@ irt.eq.tse <- function(n_items, param_x, param_y, D=1.7, A, B, link, method_link
     
     ## If an irt.link object is given
     if(!is.null(link)){
-      if(class(link) != "irt.link"){
-        stop("Link must be an irt.link object")
-      }
+#      if(class(link) != "irt.link"){
+#        stop("Link must be an irt.link object")
+#      }
     }
     else{
       ## Common items have not been set
@@ -212,9 +212,9 @@ irt.eq.ose <- function(n_items, param_x, param_y, D=1.7, theta_points, weights, 
     
     ## If an irt.link object is given
     if(!is.null(link)){
-      if(class(link) != "irt.link"){
-        stop("Link must be an irt.link object")
-      }
+#      if(class(link) != "irt.link"){
+#        stop("Link must be an irt.link object")
+#      }
     }
     else{
       ## Common items have not been set

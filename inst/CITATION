@@ -1,19 +1,17 @@
-citHeader("To cite SNSequate in publications use:")
-
-citEntry(entry = "Article",
-  title        = "{SNSequate}: Standard and Nonstandard Statistical Models and Methods for Test Equating",
-  author       = personList(as.person("Jorge Gonz{\\'a}lez")),
-  journal      = "Journal of Statistical Software",
+bibentry(
+  bibtype      = "article",
+  doi          = "10.18637/jss.v059.i07",
+  url          = "https://www.jstatsoft.org/v59/i07/",
   year         = "2014",
+  journal      = "Journal of Statistical Software",
   volume       = "59",
   number       = "7",
   pages        = "1--30",
-  url          = "https://www.jstatsoft.org/v59/i07/",
-  doi          = "10.18637/jss.v059.i07",
-  textVersion  =
-  paste("Jorge Gonzalez (2014).",
-        "SNSequate: Standard and Nonstandard Statistical Models and Methods for Test Equating.",
-        "Journal of Statistical Software, 59(7), 1-30.",
-        "URL https://www.jstatsoft.org/v59/i07/.")
+  author       = "Jorge Gonz\'alez",
+  title        = "{SNSequate}: Standard and Nonstandard Statistical Models and 
+  Methods for Test Equating",
+  textVersion  = "Gonz\'alez, J., (2014). SNSequate: Standard and Nonstandard 
+  Statistical Models and Methods for Test Equating. *Journal of Statistical 
+  Software*, *59*(7), 1-30."
 )
 

@@ -1,3 +1,4 @@
+import(moments)
 import(emdbook)
 import(stats)
 import(magic)
@@ -6,10 +7,16 @@ import(knitr)
 import(progress)
 import(statmod)
 
+importFrom("Ake", "kpmfe.fun")
+importFrom("equate", "scales")
 importFrom("graphics", "par")
 importFrom("methods", "is")
 
 export(
+discrete.smooth,
+discrete.smooth.default,
+BB.smooth,
+BB.smooth.default,
 bandwidth,
 bandwidth.default,
 eqp.eq,
@@ -37,6 +44,8 @@ sim_unimodal,
 BNP.eq,
 BNP.eq.predict)
 
+S3method(print, discrete.smooth)
+S3method(print, BB.smooth)
 S3method(print, bandwidth)
 S3method(print, eqp.eq)
 S3method(print, irt.link)
@@ -52,6 +61,8 @@ S3method(print, SEED)
 S3method(print, irt.eq)
 S3method(print, snse.gof)
 
+S3method(discrete.smooth, default)
+S3method(BB.smooth, default)
 S3method(bandwidth, default)
 S3method(eqp.eq, default)
 S3method(irt.link, default)

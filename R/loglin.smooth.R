@@ -32,11 +32,14 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-loglin.smooth<-function(scores,degree,design,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,gapsX,gapsY,gapsA,lumpX,lumpY,lumpA,...) 
+loglin.smooth<-function(scores,degree=NULL,design,scores2,degreeXA,degreeYA,J,K,
+                        L,wx,wy,w,gapsX,gapsY,gapsA,lumpX,lumpY,lumpA,...) 
 UseMethod("loglin.smooth")
 
-loglin.smooth.default<-function(scores,degree,design,scores2,degreeXA,degreeYA,J=J,K=K,L=L,wx,wy,w,
-                                gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,...)
+loglin.smooth.default<-function(scores,degree=NULL,design,scores2,degreeXA,
+                                degreeYA,J=J,K=K,L=L,wx,wy,w,gapsX=NULL,
+                                gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,
+                                lumpA=NULL,...)
 {
 
 	###########################

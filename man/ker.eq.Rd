@@ -12,7 +12,7 @@ of equating are also provided.
 \usage{
 ker.eq(scores, kert, hx = NULL, hy = NULL, degree, design, Kp = 1, scores2, 
 degreeXA, degreeYA, J, K, L, wx, wy, w, gapsX, gapsY, gapsA, lumpX, lumpY, 
-lumpA, alpha, h.adap)
+lumpA, alpha, h.adap,r=NULL,s=NULL)
 }
 
 \arguments{  
@@ -119,6 +119,10 @@ lumpA, alpha, h.adap)
    \item{alpha}{Only for Adaptative Kernel. Sensitivity parameter.}
    
    \item{h.adap}{Only for Adaptative Kernel. A list(hx, hy) containing bandwidths for Adaptative kernel for each Form.}
+   
+   \item{r}{Score probabilities for \eqn{X}{X} scores.}
+   
+   \item{s}{Score probabilities for \eqn{Y}{Y} scores.}
 }
 
 \details{This is a generic function that implements the kernel method of test equating as described in Von Davier et al.

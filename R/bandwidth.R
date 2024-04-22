@@ -32,10 +32,12 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-bandwidth<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w) 
+bandwidth<-function(scores,kert,degree=NULL,design,Kp=1,scores2,degreeXA,
+                    degreeYA,J,K,L,wx,wy,w,r=NULL) 
 UseMethod("bandwidth")
 
-bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w)
+bandwidth.default<-function(scores,kert,degree=NULL,design,Kp=1,scores2,
+                            degreeXA,degreeYA,J,K,L,wx,wy,w,r=NULL) 
 {
 
 	###########################
@@ -50,8 +52,14 @@ bandwidth.default<-function(scores,kert,degree,design,Kp=1,scores2,degreeXA,degr
 	if(!is.vector(scores)) stop("'scores' must be a vector for the EG design")
 	psv=0:(length(scores)-1)
 	y=rep(psv,scores)
-	sp.est<-loglin.smooth(scores=scores,degree=degree,design=design)$sp.est
-				}
+	
+	if (is.null(r)) {
+	  sp.est<-loglin.smooth(scores=scores,degree=degree,design=design)$sp.est
+	}
+	else{
+	  sp.est<-r  
+	}
+	}
 	else if(design=="SG"){
 	if(!is.matrix(scores)) stop("'scores' must be a matrix for the SG design")
 	psv=0:(dim(scores)[1]-1)

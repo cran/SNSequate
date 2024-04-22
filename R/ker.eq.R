@@ -31,12 +31,15 @@
 ###      Fax  : +56-2-3547729  Email: jgonzale@mat.puc.cl
 ###
 
-ker.eq<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,
-                 gapsX,gapsY,gapsA,lumpX,lumpY,lumpA,alpha,h.adap) 
+ker.eq<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
+                 degreeXA,degreeYA,J,K,L,wx,wy,w,gapsX,gapsY,gapsA,lumpX,lumpY,
+                 lumpA,alpha,h.adap,r=NULL,s=NULL) 
 UseMethod("ker.eq")
 
-ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,degreeXA,degreeYA,J,K,L,wx,wy,w,
-                         gapsX=NULL,gapsY=NULL,gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,alpha=NULL,h.adap=NULL)
+ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
+                         degreeXA,degreeYA,J,K,L,wx,wy,w,gapsX=NULL,gapsY=NULL,
+                         gapsA=NULL,lumpX=NULL,lumpY=NULL,lumpA=NULL,alpha=NULL,
+                         h.adap=NULL,r=NULL,s=NULL) 
 {
 	###########################
 	#Call parameters
@@ -107,6 +110,11 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	# Loglinear Presmoothing
 	##################################
 	if(design=="EG"){
+	  if (!is.null(r) & !is.null(s)) {
+	    rj <- r
+	    sk <- s
+	  }
+	  else{
 	  modelj <- loglin.smooth(scores[,1],degree[1],design,
 	                          gapsX = gapsX,lumpX = lumpX)
 	  modelk <- loglin.smooth(scores[,2],degree[2],design,
@@ -118,7 +126,8 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	  C_r = modelj$C
 	  C_s = modelk$C
 	}
-	else if(design=="SG"){
+}
+	  	else if(design=="SG"){
 		model <- loglin.smooth(scores=scores,degree=degree,design=design,
 		                     gapsX=gapsX,gapsY=gapsY,lumpX=lumpX,lumpY=lumpY)
 
@@ -1074,6 +1083,7 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
 	####################################
 
   if (design == "EG") {
+    if (is.null(r) & is.null(s)) {
     Tr <- degree[1]
     Ts <- degree[2]
     T <- Tr + Ts
@@ -1084,7 +1094,11 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
     JDF <- adiag(drdR,dsdS)
     C <- adiag(CR,CS)
   }
-
+    else{
+      JDF <- NULL
+      C <- NULL
+    }
+  }
 	else if(design=="SG"){
 	  Tp <- dim(Cp)[2]
 	  T <- Tp
@@ -1213,6 +1227,7 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
   }
         
   else{
+    if (is.null(r) & is.null(s)) {
     JDFC <- JDF %*% C
     sevecYx <- matrix(0,nrow = J,ncol = T)
     sevecXy <- matrix(0,nrow = K,ncol = T)
@@ -1225,7 +1240,14 @@ ker.eq.default<-function(scores,kert,hx=NULL,hy=NULL,degree,design,Kp=1,scores2,
       SEEXy[i + 1] <- sqrt(sum(sevecXy[i + 1,] ^ 2))
     }
   }
-
+    else{
+      JDFC <- NA
+      sevecXy <- NA
+      sevecYx <- NA
+      SEEXy <- NA
+      SEEYx <- NA
+    }
+  }
 	#############
 	#Output
 	#############

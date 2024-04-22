@@ -5,11 +5,11 @@ UseMethod("irt.eq")
 irt.eq.default <- function(n_items, param_x, param_y, theta_points=NULL, weights=NULL, n_points=10, w=1, 
                            A=NULL, B=NULL, link=NULL, method_link=NULL, common=NULL,  method="TS", D=1.7){
   if(method == "TS"){
-    return(irt.eq.tse(n_items, param_x, param_y, D,
+    return(irteq.tse(n_items, param_x, param_y, D,
                       A, B, link, method_link, common))
   }
   else if(method == "OS"){
-    return(irt.eq.ose(n_items, param_x, param_y, D, theta_points, weights, n_points, w, 
+    return(irteq.ose(n_items, param_x, param_y, D, theta_points, weights, n_points, w, 
                       A, B, link, method_link, common))
   }
   
@@ -56,7 +56,7 @@ LWmemo <- function(x, r, theta, irt){
   f(x, r, theta, irt)
 }
 
-irt.eq.tse <- function(n_items, param_x, param_y, D=1.7, A, B, link, method_link, common){
+irteq.tse <-function(n_items, param_x, param_y, D=1.7, A, B, link, method_link, common){
   # TODO: check input
   # Parameters
   a_x <- param_x$a
@@ -181,7 +181,7 @@ irt.eq.tse <- function(n_items, param_x, param_y, D=1.7, A, B, link, method_link
   return(res)
 }
 
-irt.eq.ose <- function(n_items, param_x, param_y, D=1.7, theta_points, weights, n_points, w, 
+irteq.ose <- function(n_items, param_x, param_y, D=1.7, theta_points, weights, n_points, w, 
                        A, B, link, method_link, common){
   
   a_x <- param_x$a

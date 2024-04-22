@@ -24,8 +24,8 @@ Equating
 \tabular{ll}{
 Package: \tab SNSequate\cr
 Type: \tab Package\cr
-Version: \tab 1.3.3\cr
-Date: \tab 2020-02-23\cr
+Version: \tab 1.3-5\cr
+Date: \tab 2023-09-13\cr
 License: \tab GPL (>= 2)\cr
 }
 }

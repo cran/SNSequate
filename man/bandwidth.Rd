@@ -12,7 +12,7 @@
 
 \usage{
 bandwidth(scores, kert, degree, design, Kp = 1, scores2, degreeXA, degreeYA, 
-J, K, L, wx, wy, w)
+J, K, L, wx, wy, w, r=NULL) 
 }
 
 \arguments{
@@ -78,6 +78,8 @@ J, K, L, wx, wy, w)
 
   \item{w}{		A number that satisfies \eqn{0\leq w\leq 1}{0<=w<=1} indicating the weight given to 
 			population \eqn{P}{P}. Only used for the "NEAT" design.}
+			
+	\item{r}{		Score probabilities.}
 }
 
 \details{	To automatically select \code{h}, the function minimizes 
